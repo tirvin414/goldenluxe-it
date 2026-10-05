@@ -52,14 +52,17 @@
     .tab{background:transparent; border:2px solid var(--line); color:var(--text); border-radius:999px; padding:.6rem 1.25rem; font-weight:700; cursor:pointer; transition:.2s}
     .tab:hover{border-color:var(--gold); color:var(--gold)}
     .tab[aria-selected="true"]{background:linear-gradient(135deg,var(--gold),var(--warm)); color:#0a0a0a; border-color:transparent}
+    .tab[aria-selected="true"]:hover{color:#0a0a0a}
+    @media (max-width:480px){ .stat{min-width:0; flex:1 1 28%; padding:.5rem .4rem} .stat b{font-size:1.2rem} .stat span{font-size:.68rem} }
 
     /* Filters */
-    .filters{display:flex; flex-wrap:wrap; gap:.4rem; justify-content:center; margin-bottom:1.25rem}
+    .filters{margin-bottom:1.25rem}
+    .filters[hidden]{display:none}
     .chip{background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:.35rem .8rem; font-size:.85rem; cursor:pointer; color:var(--muted)}
     .chip:hover{border-color:var(--gold)}
     .chip[aria-pressed="true"]{border-color:var(--gold); color:var(--gold); background:rgba(212,175,55,.1)}
 
-    .panel{padding-bottom:4rem}
+    .panel{padding-bottom:4rem; scroll-margin-top:72px}
     .panel[hidden]{display:none}
 
     /* Buttons */
@@ -154,6 +157,75 @@
     .legend i{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:.35rem; vertical-align:middle}
     .reset-row{margin-top:2rem; text-align:center}
 
+    /* Levels */
+    .filter-row{display:flex; flex-wrap:wrap; gap:.4rem; justify-content:center}
+    .filter-row + .filter-row{margin-top:.5rem}
+    .filter-row[hidden]{display:none}
+    .lvl{display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; border-radius:999px; padding:.15rem .6rem; border:1px solid}
+    .lvl-1{color:var(--good); border-color:rgba(95,191,127,.5); background:rgba(95,191,127,.08)}
+    .lvl-2{color:var(--gold); border-color:rgba(212,175,55,.5); background:rgba(212,175,55,.08)}
+    .lvl-3{color:var(--warm); border-color:rgba(255,140,66,.5); background:rgba(255,140,66,.08)}
+    .chip.lvl-chip[aria-pressed="true"]{color:#0a0a0a; background:var(--gold); border-color:var(--gold)}
+    .term-card .head{display:flex; justify-content:space-between; align-items:flex-start; gap:.5rem}
+
+    /* Talk Tech */
+    .talk-intro{color:var(--muted); text-align:center; max-width:680px; margin:0 auto 1.5rem}
+    .lvl-head{display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; font-family:Cinzel,serif; color:var(--gold); font-size:1.3rem; margin:2rem 0 .75rem}
+    .lvl-head small{font-family:Montserrat,sans-serif; color:var(--dim); font-size:.85rem; font-weight:500}
+    .convo-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:.9rem}
+    .convo-card{text-align:left; cursor:pointer; background:linear-gradient(135deg,#1b1b1b 0%, #101010 100%); border:1px solid var(--line); border-radius:16px; padding:1.1rem 1.2rem; display:flex; flex-direction:column; gap:.35rem; transition:.2s}
+    .convo-card:hover{border-color:var(--gold); transform:translateY(-2px)}
+    .convo-card b{font-family:Cinzel,serif; color:var(--gold); font-size:1.1rem; font-weight:700}
+    .convo-card .setting{color:var(--warm); font-size:.8rem; font-weight:600}
+    .convo-card .meta{color:var(--dim); font-size:.8rem}
+    .convo-card .done{color:var(--good)}
+    .convo{max-width:760px; margin:0 auto}
+    .convo-head{margin:1.25rem 0}
+    .convo-head h2{font-family:Cinzel,serif; color:var(--gold); margin:.5rem 0 .25rem; font-size:clamp(1.4rem,4vw,1.9rem)}
+    .convo-head .setting{color:var(--muted); margin:0 0 1rem}
+    .cast{list-style:none; padding:0; margin:0 0 1rem; display:grid; gap:.4rem; font-size:.92rem; color:var(--muted)}
+    .cast li{display:flex; align-items:center; gap:.6rem}
+    .cast b{color:var(--text)}
+    .toggle{display:inline-flex; align-items:center; gap:.5rem; cursor:pointer; color:var(--muted); font-size:.92rem}
+    .toggle input{accent-color:var(--gold); width:1.1rem; height:1.1rem}
+    .avatar{flex:0 0 auto; width:34px; height:34px; border-radius:50%; display:grid; place-items:center; font-weight:700; color:#0a0a0a; font-size:.9rem}
+    .a0{background:var(--gold)} .a1{background:var(--warm)} .a2{background:#8fb8de} .a3{background:#c39bd3}
+    .chat{display:flex; flex-direction:column; gap:.9rem; margin-bottom:2rem}
+    .msg{display:flex; gap:.6rem; align-items:flex-start; max-width:88%}
+    .msg.right{align-self:flex-end; flex-direction:row-reverse}
+    .bubble{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:.75rem 1rem; min-width:0}
+    .msg.right .bubble{background:#1d1812}
+    .bubble .who{font-size:.78rem; color:var(--dim); font-weight:700; margin-bottom:.15rem}
+    .bubble .say{line-height:1.55; overflow-wrap:anywhere}
+    .jt{background:rgba(212,175,55,.12); border:none; border-bottom:1px dashed var(--gold); color:var(--gold); padding:0 .15rem; border-radius:3px; cursor:pointer; font-weight:600; line-height:inherit}
+    .jt:hover{background:rgba(212,175,55,.25)}
+    .tr-btn{background:none; border:none; color:var(--dim); font-size:.8rem; cursor:pointer; padding:.35rem 0 0; font-weight:600}
+    .tr-btn:hover{color:var(--gold)}
+    .plain{margin-top:.5rem; padding:.55rem .75rem; border-left:3px solid var(--good); background:rgba(95,191,127,.07); border-radius:6px; color:var(--muted); font-size:.92rem}
+    .plain::before{content:"In plain English: "; color:var(--good); font-weight:700}
+    .check{background:linear-gradient(135deg,#1a1410 0%, #101010 100%); border:1px solid var(--line); border-radius:20px; padding:1.25rem}
+    .check h3{font-family:Cinzel,serif; color:var(--gold); margin:0 0 .75rem}
+    .cq + .cq{margin-top:1.25rem}
+    .cq p{margin:0 0 .6rem}
+    .cq-fb{margin-top:.6rem; color:var(--muted); font-size:.92rem}
+    #checkDone{margin-top:1.25rem; text-align:center}
+
+    /* Term popup */
+    dialog.term-dlg{background:#141414; color:var(--text); border:1px solid var(--gold); border-radius:20px; padding:1.5rem; max-width:min(480px, calc(100vw - 32px)); width:100%}
+    dialog.term-dlg::backdrop{background:rgba(0,0,0,.7)}
+    .term-dlg h3{font-family:Cinzel,serif; color:var(--gold); margin:.5rem 0 .2rem; font-size:1.5rem}
+    .term-dlg .full{color:var(--warm); font-weight:600; margin:0 0 .5rem}
+    .term-dlg .ex{color:var(--muted); font-size:.92rem; border-left:2px solid var(--line); padding-left:.6rem}
+    .dlg-actions{display:flex; gap:.5rem; flex-wrap:wrap; margin-top:1.25rem}
+    .dlg-close{position:absolute; top:.6rem; right:.8rem; background:none; border:none; color:var(--dim); font-size:1.5rem; cursor:pointer; line-height:1}
+
+    /* Path */
+    .path{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin-bottom:2rem}
+    .path-card{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:1.1rem}
+    .path-card p{color:var(--dim); font-size:.85rem; margin:.5rem 0 .9rem}
+    .path-card .row{display:flex; justify-content:space-between; font-size:.85rem; color:var(--muted); margin:.6rem 0 .3rem}
+    .sec-title{font-family:Cinzel,serif; color:var(--gold); margin:0 0 1rem; font-size:1.3rem}
+
     footer{border-top:1px solid var(--line); padding:1.5rem 0; text-align:center; color:var(--dim); font-size:.85rem}
     footer a{color:var(--gold)}
   </style>
@@ -169,11 +241,12 @@
   <section class="hero">
     <div class="container">
       <h1>Lingo Lab</h1>
-      <p>Learn IT and cybersecurity terms in plain English: look them up, drill them with flashcards, then test yourself.</p>
+      <p>Learn to speak tech, from Beginner to Advanced. Look terms up, read real workplace conversations, drill with flashcards, then test yourself.</p>
       <div class="stats" aria-live="polite">
         <div class="stat"><b id="statKnown">0</b><span>Mastered</span></div>
         <div class="stat"><b id="statLearning">0</b><span>Learning</span></div>
         <div class="stat"><b id="statTotal">0</b><span>Total terms</span></div>
+        <div class="stat"><b id="statTalks">0</b><span>Talks done</span></div>
         <div class="stat"><b id="statStreak">0</b><span>Day streak</span></div>
       </div>
     </div>
@@ -182,12 +255,16 @@
   <main class="container">
     <div class="tabs" role="tablist" aria-label="Study modes">
       <button class="tab" role="tab" id="tab-glossary" aria-controls="panel-glossary" aria-selected="true">📖 Glossary</button>
+      <button class="tab" role="tab" id="tab-talk" aria-controls="panel-talk" aria-selected="false">💬 Talk Tech</button>
       <button class="tab" role="tab" id="tab-flash" aria-controls="panel-flash" aria-selected="false">🃏 Flashcards</button>
       <button class="tab" role="tab" id="tab-quiz" aria-controls="panel-quiz" aria-selected="false">🎯 Quiz</button>
       <button class="tab" role="tab" id="tab-progress" aria-controls="panel-progress" aria-selected="false">📈 Progress</button>
     </div>
 
-    <div class="filters" id="filters" role="group" aria-label="Filter by category"></div>
+    <div class="filters" id="filters">
+      <div class="filter-row" id="levelChips" role="group" aria-label="Filter by level"></div>
+      <div class="filter-row" id="catChips" role="group" aria-label="Filter by category"></div>
+    </div>
 
     <!-- Glossary -->
     <section class="panel" id="panel-glossary" role="tabpanel" aria-labelledby="tab-glossary">
@@ -204,6 +281,11 @@
       </div>
       <p class="count" id="count"></p>
       <div class="grid" id="grid"></div>
+    </section>
+
+    <!-- Talk Tech -->
+    <section class="panel" id="panel-talk" role="tabpanel" aria-labelledby="tab-talk" hidden>
+      <div id="talk"></div>
     </section>
 
     <!-- Flashcards -->
@@ -241,17 +323,30 @@
     <!-- Progress -->
     <section class="panel" id="panel-progress" role="tabpanel" aria-labelledby="tab-progress" hidden>
       <div class="wotd" id="wotd"></div>
+      <h2 class="sec-title">Your path: Beginner → Advanced</h2>
+      <div class="path" id="path"></div>
+      <h2 class="sec-title">By topic</h2>
       <div class="legend"><span><i style="background:var(--good)"></i>Mastered</span><span><i style="background:var(--warm)"></i>Learning</span><span><i style="background:#262626"></i>New</span></div>
       <div class="cat-rows" id="catRows"></div>
       <div class="reset-row"><button class="btn btn-outline btn-small" id="resetBtn">Reset all progress</button></div>
     </section>
   </main>
 
+  <dialog class="term-dlg" id="termDlg" aria-labelledby="dlgTitle">
+    <button class="dlg-close" id="dlgClose" aria-label="Close">×</button>
+    <div id="dlgBody"></div>
+    <div class="dlg-actions">
+      <button class="btn btn-bad btn-small" id="dlgLearning">↺ Still learning</button>
+      <button class="btn btn-good btn-small" id="dlgKnown">✓ Got it</button>
+    </div>
+  </dialog>
+
   <footer>
     <div class="container">Want hands-on tutoring? <a href="index.html#booking">Book a session with GoldenLUXE IT</a>.</div>
   </footer>
 
   <script src="assets/lingo-terms.js"></script>
+  <script src="assets/lingo-conversations.js"></script>
   <script>
   (function () {
     "use strict";
@@ -259,11 +354,17 @@
     const CATS = window.LINGO_CATEGORIES;
     const CAT_BY_ID = Object.fromEntries(CATS.map(c => [c.id, c]));
     const TERMS = window.LINGO_TERMS.map(t => ({ ...t, id: t.t.toLowerCase().replace(/[^a-z0-9]+/g, "-") }));
+    const TERM_BY_ID = Object.fromEntries(TERMS.map(t => [t.id, t]));
+    const TERM_BY_NAME = Object.fromEntries(TERMS.map(t => [t.t.toLowerCase(), t]));
+    const LEVELS = window.LINGO_LEVELS;
+    const LEVEL_NAME = Object.fromEntries(LEVELS.map(l => [l.id, l.name]));
+    const CONVOS = window.LINGO_CONVERSATIONS || [];
     const STORE_KEY = "glx-lingo-v1";
 
     /* ---------- Persistence (per-browser) ---------- */
     // progress: { [termId]: { st: 0 new | 1 learning | 2 mastered, ok: consecutive quiz hits } }
-    let state = { progress: {}, streak: 0, lastDay: null, best: {} };
+    // convos: { [conversationId]: best comprehension score }
+    let state = { progress: {}, streak: 0, lastDay: null, best: {}, convos: {} };
     try {
       const saved = JSON.parse(localStorage.getItem(STORE_KEY));
       if (saved && typeof saved === "object") state = { ...state, ...saved };
@@ -307,19 +408,32 @@
     const STATUS_LABEL = ["○ New", "◐ Learning", "● Mastered"];
 
     /* ---------- Category filter (shared by all modes) ---------- */
-    let activeCats = new Set(); // empty = all
-    function inScope(t) { return activeCats.size === 0 || activeCats.has(t.c); }
+    let activeCats = new Set();   // empty = all
+    let activeLevels = new Set(); // empty = all
+    function levelOk(l) { return activeLevels.size === 0 || activeLevels.has(l); }
+    function inScope(t) { return (activeCats.size === 0 || activeCats.has(t.c)) && levelOk(t.l); }
+    function scopeKey() {
+      return ([...activeCats].sort().join(",") || "all") + "|" + ([...activeLevels].sort().join(",") || "all");
+    }
     function renderFilters() {
-      const chips = [`<button class="chip" data-cat="" aria-pressed="${activeCats.size === 0}">All</button>`]
-        .concat(CATS.map(c => `<button class="chip" data-cat="${c.id}" aria-pressed="${activeCats.has(c.id)}">${c.icon} ${esc(c.name)}</button>`));
-      $("#filters").innerHTML = chips.join("");
+      $("#levelChips").innerHTML = [`<button class="chip lvl-chip" data-level="" aria-pressed="${activeLevels.size === 0}">All levels</button>`]
+        .concat(LEVELS.map(l => `<button class="chip lvl-chip" data-level="${l.id}" aria-pressed="${activeLevels.has(l.id)}" title="${esc(l.blurb)}">${"★".repeat(l.id)} ${esc(l.name)}</button>`)).join("");
+      $("#catChips").innerHTML = [`<button class="chip" data-cat="" aria-pressed="${activeCats.size === 0}">All topics</button>`]
+        .concat(CATS.map(c => `<button class="chip" data-cat="${c.id}" aria-pressed="${activeCats.has(c.id)}">${c.icon} ${esc(c.name)}</button>`)).join("");
     }
     $("#filters").addEventListener("click", e => {
       const b = e.target.closest(".chip"); if (!b) return;
-      const c = b.dataset.cat;
-      if (!c) activeCats.clear();
-      else activeCats.has(c) ? activeCats.delete(c) : activeCats.add(c);
+      if ("level" in b.dataset) {
+        const l = +b.dataset.level;
+        if (!l) activeLevels.clear();
+        else activeLevels.has(l) ? activeLevels.delete(l) : activeLevels.add(l);
+      } else {
+        const c = b.dataset.cat;
+        if (!c) activeCats.clear();
+        else activeCats.has(c) ? activeCats.delete(c) : activeCats.add(c);
+      }
       renderFilters(); renderGlossary(); buildDeck(); if (!quiz.active) renderQuizSetup();
+      if (!openConvo) renderTalkList();
     });
 
     /* ---------- Stats ---------- */
@@ -329,6 +443,7 @@
       $("#statKnown").textContent = k;
       $("#statLearning").textContent = l;
       $("#statTotal").textContent = TERMS.length;
+      $("#statTalks").textContent = `${Object.keys(state.convos).filter(id => CONVOS.some(c => c.id === id)).length}/${CONVOS.length}`;
       const alive = state.lastDay === today() || (() => { const y = new Date(); y.setDate(y.getDate() - 1); return state.lastDay === y.getFullYear() + "-" + (y.getMonth() + 1) + "-" + y.getDate(); })();
       $("#statStreak").textContent = alive ? state.streak : 0;
     }
@@ -346,7 +461,7 @@
       $("#grid").innerHTML = list.map(t => {
         const st = statusOf(t.id), cat = CAT_BY_ID[t.c];
         return `<article class="term-card">
-          <h3>${highlight(t.t, q)}</h3>
+          <div class="head"><h3>${highlight(t.t, q)}</h3><span class="lvl lvl-${t.l}">${LEVEL_NAME[t.l]}</span></div>
           ${t.f ? `<p class="full">${highlight(t.f, q)}</p>` : ""}
           <p class="def">${highlight(t.d, q)}</p>
           ${t.e ? `<p class="ex">${highlight(t.e, q)}</p>` : ""}
@@ -386,7 +501,7 @@
         return;
       }
       const t = deck[idx], cat = CAT_BY_ID[t.c];
-      const termSide = `<div class="hint">${cat.icon} ${esc(cat.name)}</div><div class="big">${esc(t.t)}</div><div class="hint">Tap to reveal</div>`;
+      const termSide = `<div class="hint">${cat.icon} ${esc(cat.name)} · <span class="lvl lvl-${t.l}">${LEVEL_NAME[t.l]}</span></div><div class="big">${esc(t.t)}</div><div class="hint">Tap to reveal</div>`;
       const defSide = `${t.f ? `<div class="full" style="color:var(--warm);font-weight:600">${esc(t.f)}</div>` : ""}<div class="def">${esc(t.d)}</div>${t.e ? `<div class="ex">💡 ${esc(t.e)}</div>` : ""}`;
       const reverse = $("#fcReverse").checked;
       $("#fcFront").innerHTML = reverse ? `<div class="hint">What term is this?</div><div class="def">${esc(t.d)}</div><div class="hint">Tap to reveal</div>` : termSide;
@@ -437,18 +552,18 @@
       quiz.active = false;
       const pool = quizPool(quiz.mode);
       const enough = pool.length >= 4;
-      const bestKey = quiz.mode + ":" + ([...activeCats].sort().join(",") || "all");
+      const bestKey = quiz.mode + ":" + scopeKey();
       const best = state.best[bestKey];
       $("#quiz").innerHTML = `<div class="quiz-setup">
         <h2>Test yourself</h2>
-        <p style="color:var(--muted);margin:0 0 1rem">Questions come from your selected categories (${pool.length} terms available).</p>
+        <p style="color:var(--muted);margin:0 0 1rem">Questions come from your selected levels and topics (${pool.length} terms available).</p>
         <div class="seg" role="group" aria-label="Quiz type">${Object.entries(QUIZ_MODES).map(([k, v]) =>
           `<button class="chip" data-mode="${k}" aria-pressed="${quiz.mode === k}">${v}</button>`).join("")}</div><br>
         <div class="seg" role="group" aria-label="Number of questions">${[5, 10, 20].map(n =>
           `<button class="chip" data-len="${n}" aria-pressed="${quiz.len === n}">${n} questions</button>`).join("")}</div>
         ${best != null ? `<p style="color:var(--dim);font-size:.9rem;margin:0 0 1rem">Best score for this setup: ${best}%</p>` : ""}
         <div><button class="btn btn-primary" id="quizStart" ${enough ? "" : "disabled"}>Start quiz</button></div>
-        ${enough ? "" : `<p style="color:var(--bad);margin-top:1rem">Pick more categories — at least 4 terms are needed.</p>`}
+        ${enough ? "" : `<p style="color:var(--bad);margin-top:1rem">Pick more levels or topics — at least 4 terms are needed.</p>`}
       </div>`;
     }
     function startQuiz() {
@@ -511,7 +626,7 @@
     function finishQuiz() {
       quiz.active = false;
       const n = quiz.qs.length, pct = Math.round((quiz.score / n) * 100);
-      const bestKey = quiz.mode + ":" + ([...activeCats].sort().join(",") || "all");
+      const bestKey = quiz.mode + ":" + scopeKey();
       const prevBest = state.best[bestKey];
       if (prevBest == null || pct > prevBest) { state.best[bestKey] = pct; save(); }
       const msg = pct === 100 ? "Flawless. You speak fluent tech. 🏆" : pct >= 80 ? "Excellent work — nearly there!" : pct >= 50 ? "Solid progress. Review the misses below." : "Every expert started here. Try flashcards, then retake it.";
@@ -549,6 +664,16 @@
       $("#wotd").innerHTML = `<div class="label">Term of the day · ${wc.icon} ${esc(wc.name)}</div>
         <h2>${esc(w.t)}</h2>${w.f ? `<div style="color:var(--warm);font-weight:600">${esc(w.f)}</div>` : ""}
         <p style="margin:.5rem 0 0">${esc(w.d)}</p>${w.e ? `<p style="color:var(--muted);margin:.4rem 0 0">💡 ${esc(w.e)}</p>` : ""}`;
+      $("#path").innerHTML = LEVELS.map(L => {
+        const ts = TERMS.filter(t => t.l === L.id), cs = CONVOS.filter(c => c.l === L.id);
+        const k = ts.filter(t => statusOf(t.id) === 2).length, l = ts.filter(t => statusOf(t.id) === 1).length;
+        const done = cs.filter(c => state.convos[c.id] != null).length;
+        return `<div class="path-card"><span class="lvl lvl-${L.id}">${"★".repeat(L.id)} ${L.name}</span><p>${esc(L.blurb)}</p>
+          <div class="row"><span>Terms mastered</span><span>${k}/${ts.length}</span></div>
+          <div class="stack"><i class="k" style="width:${(k / ts.length) * 100}%"></i><i class="l" style="width:${(l / ts.length) * 100}%"></i></div>
+          <div class="row"><span>Conversations</span><span>${done}/${cs.length}</span></div>
+          <div class="stack"><i class="k" style="width:${cs.length ? (done / cs.length) * 100 : 0}%"></i></div></div>`;
+      }).join("");
       $("#catRows").innerHTML = CATS.map(c => {
         const ts = TERMS.filter(t => t.c === c.id);
         const k = ts.filter(t => statusOf(t.id) === 2).length, l = ts.filter(t => statusOf(t.id) === 1).length;
@@ -558,9 +683,123 @@
     }
     $("#resetBtn").addEventListener("click", () => {
       if (!confirm("Reset all progress, streaks and best scores?")) return;
-      state = { progress: {}, streak: 0, lastDay: null, best: {} };
-      save(); refreshStats(); renderProgress(); renderGlossary(); buildDeck(true);
+      state = { progress: {}, streak: 0, lastDay: null, best: {}, convos: {} };
+      save(); refreshStats(); renderProgress(); renderGlossary(); buildDeck(true); renderTalkList();
       if (!quiz.active) renderQuizSetup();
+    });
+
+    /* ---------- Term popup ---------- */
+    const dlg = $("#termDlg");
+    let dlgTerm = null;
+    function openTerm(id) {
+      const t = TERM_BY_ID[id]; if (!t) return;
+      dlgTerm = t;
+      const cat = CAT_BY_ID[t.c];
+      $("#dlgBody").innerHTML = `<span class="lvl lvl-${t.l}">${LEVEL_NAME[t.l]}</span> <span class="tag">${cat.icon} ${esc(cat.name)}</span>
+        <h3 id="dlgTitle">${esc(t.t)}</h3>${t.f ? `<p class="full">${esc(t.f)}</p>` : ""}
+        <p>${esc(t.d)}</p>${t.e ? `<p class="ex">💡 ${esc(t.e)}</p>` : ""}
+        <p class="tag" style="margin:0">Status: ${STATUS_LABEL[statusOf(t.id)]}</p>`;
+      if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
+    }
+    function closeTerm() { if (dlg.open) dlg.close ? dlg.close() : dlg.removeAttribute("open"); }
+    $("#dlgClose").addEventListener("click", closeTerm);
+    dlg.addEventListener("click", e => { if (e.target === dlg) closeTerm(); });
+    $("#dlgLearning").addEventListener("click", () => { setStatus(dlgTerm.id, 1); renderGlossary(); closeTerm(); });
+    $("#dlgKnown").addEventListener("click", () => { setStatus(dlgTerm.id, 2); renderGlossary(); buildDeck(true); closeTerm(); });
+
+    /* ---------- Talk Tech (conversations) ---------- */
+    let openConvo = null;
+    function renderJargon(s) {
+      // [[Term]] or [[shown words|Term]] → tappable glossary link
+      const re = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
+      let out = "", last = 0, m;
+      while ((m = re.exec(s))) {
+        out += esc(s.slice(last, m.index));
+        const t = TERM_BY_NAME[(m[2] || m[1]).toLowerCase()];
+        out += t ? `<button class="jt" data-term="${t.id}">${esc(m[1])}</button>` : esc(m[1]);
+        last = re.lastIndex;
+      }
+      return out + esc(s.slice(last));
+    }
+    function renderTalkList() {
+      openConvo = null;
+      const groups = LEVELS.filter(L => levelOk(L.id)).map(L => {
+        const cs = CONVOS.filter(c => c.l === L.id);
+        if (!cs.length) return "";
+        return `<h2 class="lvl-head"><span class="lvl lvl-${L.id}">${"★".repeat(L.id)} ${L.name}</span><small>${esc(L.blurb)}</small></h2>
+          <div class="convo-grid">${cs.map(c => {
+            const done = state.convos[c.id];
+            return `<button class="convo-card" data-convo="${c.id}">
+              <span class="setting">📍 ${esc(c.setting)}</span><b>${esc(c.title)}</b>
+              <span class="meta">${Object.keys(c.roles).length} people · ${c.lines.length} lines${done != null ? ` · <span class="done">✓ ${done}/${c.check.length}</span>` : ""}</span>
+            </button>`;
+          }).join("")}</div>`;
+      }).join("");
+      $("#talk").innerHTML = `<p class="talk-intro">Real conversations from IT and security jobs. Tap any <button class="jt" tabindex="-1">highlighted word</button> to see what it means, and tap <b>🗣️ Translate</b> to get each line in plain English.</p>${groups}`;
+    }
+    function renderConvo(id) {
+      const c = CONVOS.find(x => x.id === id); if (!c) return;
+      openConvo = { c, answered: {}, score: 0 };
+      const speakers = Object.keys(c.roles);
+      $("#talk").innerHTML = `<div class="convo">
+        <button class="btn btn-outline btn-small" id="talkBack">← All conversations</button>
+        <div class="convo-head">
+          <span class="lvl lvl-${c.l}">${"★".repeat(c.l)} ${LEVEL_NAME[c.l]}</span>
+          <h2>${esc(c.title)}</h2>
+          <p class="setting">📍 ${esc(c.setting)}</p>
+          <ul class="cast">${speakers.map((sp, i) => `<li><span class="avatar a${i % 4}">${esc(sp[0])}</span><span><b>${esc(sp)}</b>: ${esc(c.roles[sp])}</span></li>`).join("")}</ul>
+          <label class="toggle"><input type="checkbox" id="showAll" /> Show every line in plain English</label>
+        </div>
+        <div class="chat">${c.lines.map((ln, i) => {
+          const si = speakers.indexOf(ln.w);
+          return `<div class="msg${si % 2 ? " right" : ""}"><span class="avatar a${si % 4}" aria-hidden="true">${esc(ln.w[0])}</span>
+            <div class="bubble"><div class="who">${esc(ln.w)}</div><div class="say">${renderJargon(ln.s)}</div>
+            <button class="tr-btn" data-line="${i}" aria-expanded="false">🗣️ Translate</button><div class="plain" id="plain-${i}" hidden>${esc(ln.p)}</div></div></div>`;
+        }).join("")}</div>
+        <div class="check"><h3>Did you follow it?</h3>${c.check.map((q, qi) => `<div class="cq">
+          <p><b>${qi + 1}.</b> ${esc(q.q)}</p>
+          <div class="options">${q.o.map((o, oi) => `<button class="option" data-q="${qi}" data-o="${oi}"><span class="k">${"ABCD"[oi]}</span>${esc(o)}</button>`).join("")}</div>
+          <div class="cq-fb" id="cqfb-${qi}"></div></div>`).join("")}
+          <div id="checkDone"></div></div>
+      </div>`;
+      $("#panel-talk").scrollIntoView({ block: "start" });
+    }
+    function setPlain(i, show) {
+      const p = $("#plain-" + i), b = document.querySelector(`.tr-btn[data-line="${i}"]`);
+      p.hidden = !show; b.setAttribute("aria-expanded", show); b.textContent = show ? "🙈 Hide translation" : "🗣️ Translate";
+    }
+    function answerCheck(qi, oi) {
+      const oc = openConvo, q = oc.c.check[qi];
+      if (oc.answered[qi] != null) return;
+      oc.answered[qi] = oi;
+      const right = oi === q.a;
+      if (right) oc.score++;
+      document.querySelectorAll(`.option[data-q="${qi}"]`).forEach(b => {
+        b.disabled = true;
+        if (+b.dataset.o === q.a) b.classList.add("correct");
+        else if (+b.dataset.o === oi) b.classList.add("wrong");
+      });
+      $("#cqfb-" + qi).innerHTML = `${right ? "✅ <strong>Correct.</strong>" : "❌ <strong>Not quite.</strong>"} ${esc(q.why)}`;
+      if (Object.keys(oc.answered).length === oc.c.check.length) {
+        const prev = state.convos[oc.c.id];
+        state.convos[oc.c.id] = prev == null ? oc.score : Math.max(prev, oc.score);
+        touchStreak(); save(); refreshStats();
+        const idx = CONVOS.indexOf(oc.c), next = CONVOS.slice(idx + 1).find(x => levelOk(x.l));
+        $("#checkDone").innerHTML = `<p>You got <b style="color:var(--gold)">${oc.score}/${oc.c.check.length}</b>. Tap any highlighted words you weren't sure about and mark them to study.</p>
+          <div class="fc-actions">${next ? `<button class="btn btn-primary" data-convo="${next.id}">Next: ${esc(next.title)} →</button>` : ""}
+          <button class="btn btn-outline" id="talkBack">All conversations</button></div>`;
+      }
+    }
+    $("#talk").addEventListener("click", e => {
+      const b = e.target.closest("button"); if (!b) return;
+      if (b.classList.contains("jt") && b.dataset.term) openTerm(b.dataset.term);
+      else if (b.dataset.convo) renderConvo(b.dataset.convo);
+      else if (b.id === "talkBack") { renderTalkList(); $("#panel-talk").scrollIntoView({ block: "start" }); }
+      else if (b.classList.contains("tr-btn")) setPlain(+b.dataset.line, $("#plain-" + b.dataset.line).hidden);
+      else if (b.classList.contains("option")) answerCheck(+b.dataset.q, +b.dataset.o);
+    });
+    $("#talk").addEventListener("change", e => {
+      if (e.target.id === "showAll") openConvo.c.lines.forEach((_, i) => setPlain(i, e.target.checked));
     });
 
     /* ---------- Tabs ---------- */
@@ -572,13 +811,14 @@
         document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
       });
       $("#filters").hidden = tab.id === "tab-progress";
+      $("#catChips").hidden = tab.id === "tab-talk";
       if (tab.id === "tab-progress") renderProgress();
       try { sessionStorage.setItem("glx-lingo-tab", tab.id); } catch (e) {}
     }
     tabs.forEach(t => t.addEventListener("click", () => showTab(t)));
 
     /* ---------- Init ---------- */
-    renderFilters(); refreshStats(); renderGlossary(); buildDeck(true); renderQuizSetup();
+    renderFilters(); refreshStats(); renderGlossary(); buildDeck(true); renderQuizSetup(); renderTalkList();
     let startTab = null;
     try { startTab = document.getElementById(sessionStorage.getItem("glx-lingo-tab")); } catch (e) {}
     showTab(startTab || tabs[0]);
