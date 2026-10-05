@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lingo Lab | GoldenLUXE IT</title>
+  <meta name="description" content="Learn IT and cybersecurity lingo in plain English — glossary, flashcards and quizzes from GoldenLUXE IT Consulting." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --bg-2:#0f0f0f;
+      --surface:#1a1a1a;
+      --text:#e8e8e8;
+      --muted:#c8c8c8;
+      --dim:#8a8a8a;
+      --gold:#d4af37;
+      --warm:#ff8c42;
+      --good:#5fbf7f;
+      --bad:#e06464;
+      --line: rgba(212,175,55,.22);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    body{margin:0; font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; line-height:1.6; color:var(--text); background:var(--bg); min-height:100vh}
+    a{color:inherit}
+    button{font:inherit; color:inherit}
+    :focus-visible{outline:2px solid var(--gold); outline-offset:2px}
+    @media (prefers-reduced-motion:reduce){ *{animation:none!important; transition:none!important} }
+    .container{max-width:1100px; margin:0 auto; padding:0 1rem}
+    .sr-only{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+
+    /* Header */
+    header{position:sticky; top:0; background:rgba(10,10,10,.92); backdrop-filter:saturate(140%) blur(10px); border-bottom:1px solid var(--line); z-index:100}
+    .header-content{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.9rem 1rem; max-width:1100px; margin:0 auto}
+    .logo{display:flex; align-items:center; gap:.5rem; font-family:Cinzel,serif; font-weight:700; color:var(--gold); text-decoration:none}
+    .back{font-size:.9rem; color:var(--muted); text-decoration:none; font-weight:600}
+    .back:hover{color:var(--gold)}
+
+    /* Hero */
+    .hero{padding:3rem 0 1.5rem; text-align:center; background:linear-gradient(135deg,#0a0a0a 0%, #1a1410 100%); border-bottom:1px solid var(--line)}
+    .hero h1{font-family:Cinzel,serif; font-size:clamp(2rem,6vw,3rem); line-height:1.15; margin:0 0 .5rem; color:var(--gold); text-shadow:0 0 24px rgba(212,175,55,.32)}
+    .hero p{color:var(--muted); margin:0 auto; max-width:640px}
+    .stats{display:flex; justify-content:center; flex-wrap:wrap; gap:.75rem; margin-top:1.5rem}
+    .stat{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:.6rem 1.1rem; min-width:110px}
+    .stat b{display:block; font-size:1.4rem; color:var(--gold); font-variant-numeric:tabular-nums}
+    .stat span{font-size:.78rem; color:var(--dim); text-transform:uppercase; letter-spacing:.06em}
+
+    /* Tabs */
+    .tabs{display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap; margin:1.75rem 0 1rem}
+    .tab{background:transparent; border:2px solid var(--line); color:var(--text); border-radius:999px; padding:.6rem 1.25rem; font-weight:700; cursor:pointer; transition:.2s}
+    .tab:hover{border-color:var(--gold); color:var(--gold)}
+    .tab[aria-selected="true"]{background:linear-gradient(135deg,var(--gold),var(--warm)); color:#0a0a0a; border-color:transparent}
+
+    /* Filters */
+    .filters{display:flex; flex-wrap:wrap; gap:.4rem; justify-content:center; margin-bottom:1.25rem}
+    .chip{background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:.35rem .8rem; font-size:.85rem; cursor:pointer; color:var(--muted)}
+    .chip:hover{border-color:var(--gold)}
+    .chip[aria-pressed="true"]{border-color:var(--gold); color:var(--gold); background:rgba(212,175,55,.1)}
+
+    .panel{padding-bottom:4rem}
+    .panel[hidden]{display:none}
+
+    /* Buttons */
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:.4rem; border:none; cursor:pointer; text-decoration:none; font-weight:700; border-radius:999px; padding:.75rem 1.4rem; transition:transform .2s, box-shadow .2s, background .2s}
+    .btn-primary{background:linear-gradient(135deg,var(--gold),var(--warm)); color:#0a0a0a; box-shadow:0 6px 24px rgba(212,175,55,.25)}
+    .btn-primary:hover{transform:translateY(-2px)}
+    .btn-outline{background:transparent; color:var(--gold); border:2px solid var(--gold)}
+    .btn-outline:hover{background:rgba(212,175,55,.08)}
+    .btn-good{background:rgba(95,191,127,.15); color:var(--good); border:2px solid var(--good)}
+    .btn-bad{background:rgba(224,100,100,.12); color:var(--bad); border:2px solid var(--bad)}
+    .btn-small{padding:.4rem .9rem; font-size:.85rem}
+
+    /* Glossary */
+    .toolbar{display:flex; gap:.75rem; flex-wrap:wrap; align-items:center; margin-bottom:1rem}
+    .search{flex:1 1 260px; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:.75rem 1rem; color:var(--text); font:inherit}
+    .search::placeholder{color:var(--dim)}
+    select.search{flex:0 1 200px; cursor:pointer}
+    .count{color:var(--dim); font-size:.9rem; margin:0 0 1rem}
+    .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1rem}
+    @media (max-width:400px){ .grid{grid-template-columns:1fr} }
+    .term-card{background:linear-gradient(135deg,#1b1b1b 0%, #101010 100%); border:1px solid var(--line); border-radius:16px; padding:1.25rem; display:flex; flex-direction:column; gap:.4rem}
+    .term-card h3{font-family:Cinzel,serif; color:var(--gold); margin:0; font-size:1.2rem; overflow-wrap:anywhere}
+    .term-card .full{color:var(--warm); font-size:.85rem; font-weight:600; margin:0}
+    .term-card .def{margin:.25rem 0 0; color:var(--text)}
+    .term-card .ex{margin:0; color:var(--muted); font-size:.9rem; border-left:2px solid var(--line); padding-left:.6rem}
+    .term-card .meta{display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:.6rem; gap:.5rem}
+    .tag{font-size:.75rem; color:var(--dim)}
+    .status-btn{background:transparent; border:1px solid var(--line); border-radius:999px; padding:.25rem .7rem; font-size:.78rem; cursor:pointer; color:var(--dim); white-space:nowrap}
+    .status-btn[data-st="1"]{color:var(--warm); border-color:var(--warm)}
+    .status-btn[data-st="2"]{color:var(--good); border-color:var(--good)}
+    mark{background:rgba(212,175,55,.3); color:inherit; border-radius:3px}
+    .empty{text-align:center; color:var(--dim); padding:3rem 1rem}
+
+    /* Flashcards */
+    .fc-wrap{max-width:620px; margin:0 auto; text-align:center}
+    .fc-opts{display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:1rem; color:var(--muted); font-size:.9rem}
+    .fc-opts label{display:flex; align-items:center; gap:.4rem; cursor:pointer}
+    .fc-opts input{accent-color:var(--gold)}
+    .flashcard{perspective:1200px; height:320px; cursor:pointer; margin-bottom:1rem; border-radius:20px}
+    .fc-inner{position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d}
+    .flashcard.flipped .fc-inner{transform:rotateY(180deg)}
+    .fc-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:20px; border:1px solid var(--line); display:flex; flex-direction:column; justify-content:center; align-items:center; padding:1.5rem; gap:.75rem; background:linear-gradient(135deg,#1b1b1b 0%, #101010 100%); overflow:auto}
+    .fc-back{transform:rotateY(180deg); border-color:var(--gold)}
+    .fc-face .big{font-family:Cinzel,serif; color:var(--gold); font-size:clamp(1.5rem,5vw,2.2rem); line-height:1.2; overflow-wrap:anywhere}
+    .fc-face .hint{color:var(--dim); font-size:.8rem}
+    .fc-face .def{font-size:1.08rem}
+    .fc-face .ex{color:var(--muted); font-size:.92rem}
+    .fc-progress{color:var(--dim); font-size:.9rem; margin-bottom:.75rem}
+    .fc-actions{display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap}
+    .kbd-hint{color:var(--dim); font-size:.8rem; margin-top:1rem}
+    kbd{border:1px solid var(--line); border-radius:4px; padding:0 .35rem; font-family:inherit; font-size:.75rem}
+
+    /* Quiz */
+    .quiz-wrap{max-width:680px; margin:0 auto}
+    .quiz-setup{text-align:center; background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:2rem 1.25rem}
+    .quiz-setup h2,.quiz-result h2{font-family:Cinzel,serif; color:var(--gold); margin:0 0 .5rem}
+    .seg{display:inline-flex; flex-wrap:wrap; justify-content:center; gap:.4rem; margin:.5rem 0 1.25rem}
+    .q-head{display:flex; justify-content:space-between; color:var(--dim); font-size:.9rem; margin-bottom:.5rem}
+    .bar{height:6px; background:var(--surface); border-radius:999px; overflow:hidden; margin-bottom:1.25rem}
+    .bar > i{display:block; height:100%; background:linear-gradient(90deg,var(--gold),var(--warm)); transition:width .3s}
+    .q-prompt{background:linear-gradient(135deg,#1b1b1b 0%, #101010 100%); border:1px solid var(--line); border-radius:18px; padding:1.5rem; margin-bottom:1rem; text-align:center}
+    .q-prompt .label{color:var(--dim); font-size:.8rem; text-transform:uppercase; letter-spacing:.06em}
+    .q-prompt .big{font-family:Cinzel,serif; color:var(--gold); font-size:clamp(1.4rem,4.5vw,2rem); margin:.4rem 0 0; overflow-wrap:anywhere}
+    .q-prompt .defq{font-size:1.08rem; margin:.5rem 0 0}
+    .options{display:grid; gap:.6rem}
+    .option{text-align:left; background:var(--surface); border:2px solid var(--line); border-radius:14px; padding:.9rem 1rem; cursor:pointer; transition:.15s; line-height:1.45}
+    .option:hover:not(:disabled){border-color:var(--gold)}
+    .option:disabled{cursor:default}
+    .option.correct{border-color:var(--good); background:rgba(95,191,127,.12)}
+    .option.wrong{border-color:var(--bad); background:rgba(224,100,100,.1)}
+    .option .k{color:var(--dim); font-weight:700; margin-right:.5rem}
+    .feedback{margin:1rem 0; padding:1rem; border-radius:14px; background:var(--surface); border:1px solid var(--line)}
+    .feedback strong{color:var(--gold)}
+    .q-next{text-align:right}
+    .quiz-result{text-align:center}
+    .score{font-size:3rem; font-weight:700; color:var(--gold); font-variant-numeric:tabular-nums}
+    .missed{text-align:left; margin:1.5rem 0; display:grid; gap:.6rem}
+    .missed div{background:var(--surface); border-left:3px solid var(--bad); border-radius:8px; padding:.75rem 1rem}
+    .missed b{color:var(--gold)}
+
+    /* Progress */
+    .wotd{background:linear-gradient(135deg,#1a1410 0%, #101010 100%); border:1px solid var(--gold); border-radius:20px; padding:1.5rem; margin-bottom:1.5rem}
+    .wotd .label{color:var(--warm); font-size:.8rem; text-transform:uppercase; letter-spacing:.08em; font-weight:700}
+    .wotd h2{font-family:Cinzel,serif; color:var(--gold); margin:.25rem 0}
+    .cat-rows{display:grid; gap:.9rem}
+    .cat-row{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:.9rem 1rem}
+    .cat-row .top{display:flex; justify-content:space-between; gap:1rem; margin-bottom:.4rem; font-weight:600}
+    .cat-row .top span:last-child{color:var(--dim); font-weight:500; font-variant-numeric:tabular-nums; white-space:nowrap}
+    .stack{display:flex; height:10px; border-radius:999px; overflow:hidden; background:#262626}
+    .stack .k{background:var(--good)} .stack .l{background:var(--warm)}
+    .legend{display:flex; gap:1rem; flex-wrap:wrap; color:var(--dim); font-size:.85rem; margin:0 0 1rem}
+    .legend i{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:.35rem; vertical-align:middle}
+    .reset-row{margin-top:2rem; text-align:center}
+
+    footer{border-top:1px solid var(--line); padding:1.5rem 0; text-align:center; color:var(--dim); font-size:.85rem}
+    footer a{color:var(--gold)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a class="logo" href="index.html"><span aria-hidden="true">✨</span> GoldenLUXE IT</a>
+      <a class="back" href="index.html">← Back to site</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Lingo Lab</h1>
+      <p>Learn IT and cybersecurity terms in plain English: look them up, drill them with flashcards, then test yourself.</p>
+      <div class="stats" aria-live="polite">
+        <div class="stat"><b id="statKnown">0</b><span>Mastered</span></div>
+        <div class="stat"><b id="statLearning">0</b><span>Learning</span></div>
+        <div class="stat"><b id="statTotal">0</b><span>Total terms</span></div>
+        <div class="stat"><b id="statStreak">0</b><span>Day streak</span></div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="tabs" role="tablist" aria-label="Study modes">
+      <button class="tab" role="tab" id="tab-glossary" aria-controls="panel-glossary" aria-selected="true">📖 Glossary</button>
+      <button class="tab" role="tab" id="tab-flash" aria-controls="panel-flash" aria-selected="false">🃏 Flashcards</button>
+      <button class="tab" role="tab" id="tab-quiz" aria-controls="panel-quiz" aria-selected="false">🎯 Quiz</button>
+      <button class="tab" role="tab" id="tab-progress" aria-controls="panel-progress" aria-selected="false">📈 Progress</button>
+    </div>
+
+    <div class="filters" id="filters" role="group" aria-label="Filter by category"></div>
+
+    <!-- Glossary -->
+    <section class="panel" id="panel-glossary" role="tabpanel" aria-labelledby="tab-glossary">
+      <div class="toolbar">
+        <label class="sr-only" for="search">Search terms</label>
+        <input class="search" id="search" type="search" placeholder="Search terms, acronyms or definitions…" autocomplete="off" />
+        <label class="sr-only" for="statusFilter">Filter by status</label>
+        <select class="search" id="statusFilter">
+          <option value="all">All statuses</option>
+          <option value="0">New</option>
+          <option value="1">Learning</option>
+          <option value="2">Mastered</option>
+        </select>
+      </div>
+      <p class="count" id="count"></p>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <!-- Flashcards -->
+    <section class="panel" id="panel-flash" role="tabpanel" aria-labelledby="tab-flash" hidden>
+      <div class="fc-wrap">
+        <div class="fc-opts">
+          <label><input type="checkbox" id="fcSkipKnown" checked /> Skip mastered</label>
+          <label><input type="checkbox" id="fcReverse" /> Show definition first</label>
+        </div>
+        <p class="fc-progress" id="fcProgress"></p>
+        <div class="flashcard" id="flashcard" role="button" tabindex="0" aria-label="Flashcard, press to flip">
+          <div class="fc-inner">
+            <div class="fc-face fc-front" id="fcFront"></div>
+            <div class="fc-face fc-back" id="fcBack"></div>
+          </div>
+        </div>
+        <div class="fc-actions">
+          <button class="btn btn-bad" id="fcLearning">↺ Still learning</button>
+          <button class="btn btn-good" id="fcKnown">✓ Got it</button>
+        </div>
+        <div class="fc-actions" style="margin-top:.75rem">
+          <button class="btn btn-outline btn-small" id="fcPrev">← Prev</button>
+          <button class="btn btn-outline btn-small" id="fcShuffle">🔀 Shuffle</button>
+          <button class="btn btn-outline btn-small" id="fcNext">Next →</button>
+        </div>
+        <p class="kbd-hint"><kbd>Space</kbd> flip · <kbd>←</kbd>/<kbd>→</kbd> navigate · <kbd>1</kbd> still learning · <kbd>2</kbd> got it</p>
+      </div>
+    </section>
+
+    <!-- Quiz -->
+    <section class="panel" id="panel-quiz" role="tabpanel" aria-labelledby="tab-quiz" hidden>
+      <div class="quiz-wrap" id="quiz"></div>
+    </section>
+
+    <!-- Progress -->
+    <section class="panel" id="panel-progress" role="tabpanel" aria-labelledby="tab-progress" hidden>
+      <div class="wotd" id="wotd"></div>
+      <div class="legend"><span><i style="background:var(--good)"></i>Mastered</span><span><i style="background:var(--warm)"></i>Learning</span><span><i style="background:#262626"></i>New</span></div>
+      <div class="cat-rows" id="catRows"></div>
+      <div class="reset-row"><button class="btn btn-outline btn-small" id="resetBtn">Reset all progress</button></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">Want hands-on tutoring? <a href="index.html#booking">Book a session with GoldenLUXE IT</a>.</div>
+  </footer>
+
+  <script src="assets/lingo-terms.js"></script>
+  <script>
+  (function () {
+    "use strict";
+
+    const CATS = window.LINGO_CATEGORIES;
+    const CAT_BY_ID = Object.fromEntries(CATS.map(c => [c.id, c]));
+    const TERMS = window.LINGO_TERMS.map(t => ({ ...t, id: t.t.toLowerCase().replace(/[^a-z0-9]+/g, "-") }));
+    const STORE_KEY = "glx-lingo-v1";
+
+    /* ---------- Persistence (per-browser) ---------- */
+    // progress: { [termId]: { st: 0 new | 1 learning | 2 mastered, ok: consecutive quiz hits } }
+    let state = { progress: {}, streak: 0, lastDay: null, best: {} };
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORE_KEY));
+      if (saved && typeof saved === "object") state = { ...state, ...saved };
+    } catch (e) { /* storage unavailable — run without saving */ }
+
+    function save() {
+      try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
+    }
+    function today() {
+      const d = new Date();
+      return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+    }
+    function touchStreak() {
+      const t = today();
+      if (state.lastDay === t) return;
+      const y = new Date(); y.setDate(y.getDate() - 1);
+      const yesterday = y.getFullYear() + "-" + (y.getMonth() + 1) + "-" + y.getDate();
+      state.streak = state.lastDay === yesterday ? state.streak + 1 : 1;
+      state.lastDay = t;
+    }
+    function statusOf(id) { return (state.progress[id] && state.progress[id].st) || 0; }
+    function setStatus(id, st) {
+      state.progress[id] = { st, ok: st === 2 ? 2 : 0 };
+      touchStreak(); save(); refreshStats();
+    }
+
+    /* ---------- Helpers ---------- */
+    const $ = s => document.querySelector(s);
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    function shuffle(a) {
+      a = a.slice();
+      for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+      return a;
+    }
+    function highlight(text, q) {
+      const safe = esc(text);
+      if (!q) return safe;
+      const re = new RegExp("(" + esc(q).replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
+      return safe.replace(re, "<mark>$1</mark>");
+    }
+    const STATUS_LABEL = ["○ New", "◐ Learning", "● Mastered"];
+
+    /* ---------- Category filter (shared by all modes) ---------- */
+    let activeCats = new Set(); // empty = all
+    function inScope(t) { return activeCats.size === 0 || activeCats.has(t.c); }
+    function renderFilters() {
+      const chips = [`<button class="chip" data-cat="" aria-pressed="${activeCats.size === 0}">All</button>`]
+        .concat(CATS.map(c => `<button class="chip" data-cat="${c.id}" aria-pressed="${activeCats.has(c.id)}">${c.icon} ${esc(c.name)}</button>`));
+      $("#filters").innerHTML = chips.join("");
+    }
+    $("#filters").addEventListener("click", e => {
+      const b = e.target.closest(".chip"); if (!b) return;
+      const c = b.dataset.cat;
+      if (!c) activeCats.clear();
+      else activeCats.has(c) ? activeCats.delete(c) : activeCats.add(c);
+      renderFilters(); renderGlossary(); buildDeck(); if (!quiz.active) renderQuizSetup();
+    });
+
+    /* ---------- Stats ---------- */
+    function refreshStats() {
+      let k = 0, l = 0;
+      TERMS.forEach(t => { const s = statusOf(t.id); if (s === 2) k++; else if (s === 1) l++; });
+      $("#statKnown").textContent = k;
+      $("#statLearning").textContent = l;
+      $("#statTotal").textContent = TERMS.length;
+      const alive = state.lastDay === today() || (() => { const y = new Date(); y.setDate(y.getDate() - 1); return state.lastDay === y.getFullYear() + "-" + (y.getMonth() + 1) + "-" + y.getDate(); })();
+      $("#statStreak").textContent = alive ? state.streak : 0;
+    }
+
+    /* ---------- Glossary ---------- */
+    function renderGlossary() {
+      const q = $("#search").value.trim().toLowerCase();
+      const sf = $("#statusFilter").value;
+      const list = TERMS.filter(t => inScope(t)
+        && (sf === "all" || String(statusOf(t.id)) === sf)
+        && (!q || [t.t, t.f, t.d, t.e].some(x => x && x.toLowerCase().includes(q))))
+        .sort((a, b) => a.t.localeCompare(b.t));
+      $("#count").textContent = `${list.length} term${list.length === 1 ? "" : "s"}`;
+      if (!list.length) { $("#grid").innerHTML = `<p class="empty">No terms match. Try a different search or category.</p>`; return; }
+      $("#grid").innerHTML = list.map(t => {
+        const st = statusOf(t.id), cat = CAT_BY_ID[t.c];
+        return `<article class="term-card">
+          <h3>${highlight(t.t, q)}</h3>
+          ${t.f ? `<p class="full">${highlight(t.f, q)}</p>` : ""}
+          <p class="def">${highlight(t.d, q)}</p>
+          ${t.e ? `<p class="ex">${highlight(t.e, q)}</p>` : ""}
+          <div class="meta">
+            <span class="tag">${cat.icon} ${esc(cat.name)}</span>
+            <button class="status-btn" data-id="${t.id}" data-st="${st}" title="Click to change status">${STATUS_LABEL[st]}</button>
+          </div>
+        </article>`;
+      }).join("");
+    }
+    $("#search").addEventListener("input", renderGlossary);
+    $("#statusFilter").addEventListener("change", renderGlossary);
+    $("#grid").addEventListener("click", e => {
+      const b = e.target.closest(".status-btn"); if (!b) return;
+      const next = (statusOf(b.dataset.id) + 1) % 3;
+      setStatus(b.dataset.id, next);
+      b.dataset.st = next; b.textContent = STATUS_LABEL[next];
+    });
+
+    /* ---------- Flashcards ---------- */
+    let deck = [], idx = 0;
+    function buildDeck(doShuffle) {
+      const skip = $("#fcSkipKnown").checked;
+      const pool = TERMS.filter(t => inScope(t) && !(skip && statusOf(t.id) === 2));
+      deck = doShuffle === false ? pool : shuffle(pool);
+      idx = 0; renderCard();
+    }
+    function renderCard() {
+      const card = $("#flashcard");
+      card.classList.remove("flipped");
+      const disabled = !deck.length;
+      ["#fcLearning", "#fcKnown", "#fcPrev", "#fcNext"].forEach(s => $(s).disabled = disabled);
+      if (!deck.length) {
+        $("#fcProgress").textContent = "";
+        $("#fcFront").innerHTML = `<div class="big">🏆</div><div class="def">You've mastered every term in this selection!</div><div class="hint">Untick "Skip mastered" or pick another category.</div>`;
+        $("#fcBack").innerHTML = "";
+        return;
+      }
+      const t = deck[idx], cat = CAT_BY_ID[t.c];
+      const termSide = `<div class="hint">${cat.icon} ${esc(cat.name)}</div><div class="big">${esc(t.t)}</div><div class="hint">Tap to reveal</div>`;
+      const defSide = `${t.f ? `<div class="full" style="color:var(--warm);font-weight:600">${esc(t.f)}</div>` : ""}<div class="def">${esc(t.d)}</div>${t.e ? `<div class="ex">💡 ${esc(t.e)}</div>` : ""}`;
+      const reverse = $("#fcReverse").checked;
+      $("#fcFront").innerHTML = reverse ? `<div class="hint">What term is this?</div><div class="def">${esc(t.d)}</div><div class="hint">Tap to reveal</div>` : termSide;
+      $("#fcBack").innerHTML = reverse ? `<div class="big">${esc(t.t)}</div>${t.f ? `<div style="color:var(--warm);font-weight:600">${esc(t.f)}</div>` : ""}${t.e ? `<div class="ex">💡 ${esc(t.e)}</div>` : ""}` : defSide;
+      $("#fcProgress").textContent = `Card ${idx + 1} of ${deck.length} · ${STATUS_LABEL[statusOf(t.id)]}`;
+    }
+    function flip() { if (deck.length) $("#flashcard").classList.toggle("flipped"); }
+    function move(d) { if (!deck.length) return; idx = (idx + d + deck.length) % deck.length; renderCard(); }
+    function rate(st) {
+      if (!deck.length) return;
+      const t = deck[idx];
+      setStatus(t.id, st);
+      if (st === 2 && $("#fcSkipKnown").checked) {
+        deck.splice(idx, 1);
+        if (idx >= deck.length) idx = 0;
+        renderCard();
+      } else move(1);
+      renderGlossary();
+    }
+    $("#flashcard").addEventListener("click", flip);
+    $("#fcPrev").addEventListener("click", () => move(-1));
+    $("#fcNext").addEventListener("click", () => move(1));
+    $("#fcShuffle").addEventListener("click", () => buildDeck(true));
+    $("#fcLearning").addEventListener("click", () => rate(1));
+    $("#fcKnown").addEventListener("click", () => rate(2));
+    $("#fcSkipKnown").addEventListener("change", () => buildDeck(true));
+    $("#fcReverse").addEventListener("change", renderCard);
+    document.addEventListener("keydown", e => {
+      if ($("#panel-flash").hidden || e.target.matches("input, select, textarea")) return;
+      if (e.key === " ") {
+        if (e.target.matches("#panel-flash button")) return; // let focused card buttons handle Space themselves
+        e.preventDefault(); flip();
+      }
+      else if (e.key === "ArrowRight") move(1);
+      else if (e.key === "ArrowLeft") move(-1);
+      else if (e.key === "1") rate(1);
+      else if (e.key === "2") rate(2);
+    });
+
+    /* ---------- Quiz ---------- */
+    const quiz = { active: false, mode: "def", len: 10, qs: [], i: 0, score: 0, missed: [] };
+    const QUIZ_MODES = { def: "Term → Definition", term: "Definition → Term", acr: "Acronym → Full name" };
+
+    function quizPool(mode) {
+      return TERMS.filter(t => inScope(t) && (mode !== "acr" || t.f));
+    }
+    function renderQuizSetup() {
+      quiz.active = false;
+      const pool = quizPool(quiz.mode);
+      const enough = pool.length >= 4;
+      const bestKey = quiz.mode + ":" + ([...activeCats].sort().join(",") || "all");
+      const best = state.best[bestKey];
+      $("#quiz").innerHTML = `<div class="quiz-setup">
+        <h2>Test yourself</h2>
+        <p style="color:var(--muted);margin:0 0 1rem">Questions come from your selected categories (${pool.length} terms available).</p>
+        <div class="seg" role="group" aria-label="Quiz type">${Object.entries(QUIZ_MODES).map(([k, v]) =>
+          `<button class="chip" data-mode="${k}" aria-pressed="${quiz.mode === k}">${v}</button>`).join("")}</div><br>
+        <div class="seg" role="group" aria-label="Number of questions">${[5, 10, 20].map(n =>
+          `<button class="chip" data-len="${n}" aria-pressed="${quiz.len === n}">${n} questions</button>`).join("")}</div>
+        ${best != null ? `<p style="color:var(--dim);font-size:.9rem;margin:0 0 1rem">Best score for this setup: ${best}%</p>` : ""}
+        <div><button class="btn btn-primary" id="quizStart" ${enough ? "" : "disabled"}>Start quiz</button></div>
+        ${enough ? "" : `<p style="color:var(--bad);margin-top:1rem">Pick more categories — at least 4 terms are needed.</p>`}
+      </div>`;
+    }
+    function startQuiz() {
+      const pool = quizPool(quiz.mode);
+      // Favour terms you haven't mastered yet, then fill with the rest.
+      const weak = shuffle(pool.filter(t => statusOf(t.id) !== 2));
+      const strong = shuffle(pool.filter(t => statusOf(t.id) === 2));
+      const picks = weak.concat(strong).slice(0, Math.min(quiz.len, pool.length));
+      quiz.qs = shuffle(picks).map(answer => {
+        const sameCat = shuffle(pool.filter(t => t.id !== answer.id && t.c === answer.c));
+        const others = shuffle(pool.filter(t => t.id !== answer.id && t.c !== answer.c));
+        const distractors = sameCat.concat(others).slice(0, 3);
+        return { answer, options: shuffle([answer, ...distractors]) };
+      });
+      Object.assign(quiz, { active: true, i: 0, score: 0, missed: [] });
+      renderQuestion();
+    }
+    function optText(t) { return quiz.mode === "def" ? t.d : quiz.mode === "acr" ? t.f : t.t; }
+    function renderQuestion() {
+      const q = quiz.qs[quiz.i], a = q.answer, n = quiz.qs.length;
+      const prompt = quiz.mode === "term"
+        ? `<div class="label">Which term matches this definition?</div><p class="defq">${esc(a.d)}</p>`
+        : quiz.mode === "acr"
+          ? `<div class="label">What does this stand for?</div><div class="big">${esc(a.t)}</div>`
+          : `<div class="label">What does this mean?</div><div class="big">${esc(a.t)}</div>`;
+      $("#quiz").innerHTML = `
+        <div class="q-head"><span>Question ${quiz.i + 1} of ${n}</span><span>Score: ${quiz.score}</span></div>
+        <div class="bar"><i style="width:${(quiz.i / n) * 100}%"></i></div>
+        <div class="q-prompt">${prompt}</div>
+        <div class="options">${q.options.map((o, k) =>
+          `<button class="option" data-id="${o.id}"><span class="k">${"ABCD"[k]}</span>${esc(optText(o))}</button>`).join("")}</div>
+        <div id="qFeedback"></div>`;
+    }
+    function answer(id) {
+      const q = quiz.qs[quiz.i], a = q.answer, right = id === a.id;
+      document.querySelectorAll(".option").forEach(b => {
+        b.disabled = true;
+        if (b.dataset.id === a.id) b.classList.add("correct");
+        else if (b.dataset.id === id) b.classList.add("wrong");
+      });
+      const p = state.progress[a.id] || { st: 0, ok: 0 };
+      if (right) {
+        quiz.score++;
+        p.ok = (p.ok || 0) + 1;
+        p.st = p.ok >= 2 ? 2 : Math.max(p.st, 1);
+      } else {
+        quiz.missed.push(a);
+        p.ok = 0; p.st = 1;
+      }
+      state.progress[a.id] = p;
+      touchStreak(); save(); refreshStats();
+      const last = quiz.i === quiz.qs.length - 1;
+      $("#qFeedback").innerHTML = `<div class="feedback">${right ? "✅ <strong>Correct!</strong>" : "❌ <strong>Not quite.</strong>"}
+          <div style="margin-top:.4rem"><b>${esc(a.t)}</b>${a.f ? ` (${esc(a.f)})` : ""}: ${esc(a.d)}</div>
+          ${a.e ? `<div style="color:var(--muted);font-size:.92rem;margin-top:.3rem">💡 ${esc(a.e)}</div>` : ""}
+        </div>
+        <div class="q-next"><button class="btn btn-primary" id="qNext">${last ? "See results" : "Next question →"}</button></div>`;
+      $("#qNext").focus();
+    }
+    function finishQuiz() {
+      quiz.active = false;
+      const n = quiz.qs.length, pct = Math.round((quiz.score / n) * 100);
+      const bestKey = quiz.mode + ":" + ([...activeCats].sort().join(",") || "all");
+      const prevBest = state.best[bestKey];
+      if (prevBest == null || pct > prevBest) { state.best[bestKey] = pct; save(); }
+      const msg = pct === 100 ? "Flawless. You speak fluent tech. 🏆" : pct >= 80 ? "Excellent work — nearly there!" : pct >= 50 ? "Solid progress. Review the misses below." : "Every expert started here. Try flashcards, then retake it.";
+      $("#quiz").innerHTML = `<div class="quiz-result">
+        <h2>Quiz complete</h2>
+        <div class="score">${quiz.score} / ${n}</div>
+        <p style="color:var(--muted)">${pct}% · ${msg}${prevBest != null && pct > prevBest ? " New personal best!" : ""}</p>
+        ${quiz.missed.length ? `<div class="missed"><h3 style="font-family:Cinzel,serif;color:var(--gold);margin:0">Review these</h3>${quiz.missed.map(t =>
+          `<div><b>${esc(t.t)}</b>${t.f ? ` (${esc(t.f)})` : ""}: ${esc(t.d)}</div>`).join("")}</div>` : ""}
+        <div class="fc-actions"><button class="btn btn-primary" id="qAgain">Try again</button><button class="btn btn-outline" id="qSetup">Change settings</button></div>
+      </div>`;
+      renderGlossary(); buildDeck(true);
+    }
+    $("#quiz").addEventListener("click", e => {
+      const t = e.target.closest("button"); if (!t) return;
+      if (t.dataset.mode) { quiz.mode = t.dataset.mode; renderQuizSetup(); }
+      else if (t.dataset.len) { quiz.len = +t.dataset.len; renderQuizSetup(); }
+      else if (t.id === "quizStart" || t.id === "qAgain") startQuiz();
+      else if (t.id === "qSetup") renderQuizSetup();
+      else if (t.classList.contains("option")) answer(t.dataset.id);
+      else if (t.id === "qNext") { if (++quiz.i < quiz.qs.length) renderQuestion(); else finishQuiz(); }
+    });
+    document.addEventListener("keydown", e => {
+      if ($("#panel-quiz").hidden || !quiz.active || e.target.matches("input, select, textarea")) return;
+      const k = e.key.toUpperCase(), opts = document.querySelectorAll(".option:not(:disabled)");
+      const n = "ABCD".indexOf(k) >= 0 ? "ABCD".indexOf(k) : "1234".indexOf(e.key);
+      if (n >= 0 && opts[n]) opts[n].click();
+    });
+
+    /* ---------- Progress ---------- */
+    function renderProgress() {
+      // Word of the day: stable for the calendar day.
+      const seed = today().split("-").reduce((a, x) => a * 31 + +x, 7);
+      const w = TERMS[seed % TERMS.length], wc = CAT_BY_ID[w.c];
+      $("#wotd").innerHTML = `<div class="label">Term of the day · ${wc.icon} ${esc(wc.name)}</div>
+        <h2>${esc(w.t)}</h2>${w.f ? `<div style="color:var(--warm);font-weight:600">${esc(w.f)}</div>` : ""}
+        <p style="margin:.5rem 0 0">${esc(w.d)}</p>${w.e ? `<p style="color:var(--muted);margin:.4rem 0 0">💡 ${esc(w.e)}</p>` : ""}`;
+      $("#catRows").innerHTML = CATS.map(c => {
+        const ts = TERMS.filter(t => t.c === c.id);
+        const k = ts.filter(t => statusOf(t.id) === 2).length, l = ts.filter(t => statusOf(t.id) === 1).length;
+        return `<div class="cat-row"><div class="top"><span>${c.icon} ${esc(c.name)}</span><span>${k}/${ts.length} mastered</span></div>
+          <div class="stack" role="img" aria-label="${k} mastered, ${l} learning, ${ts.length - k - l} new"><i class="k" style="width:${(k / ts.length) * 100}%"></i><i class="l" style="width:${(l / ts.length) * 100}%"></i></div></div>`;
+      }).join("");
+    }
+    $("#resetBtn").addEventListener("click", () => {
+      if (!confirm("Reset all progress, streaks and best scores?")) return;
+      state = { progress: {}, streak: 0, lastDay: null, best: {} };
+      save(); refreshStats(); renderProgress(); renderGlossary(); buildDeck(true);
+      if (!quiz.active) renderQuizSetup();
+    });
+
+    /* ---------- Tabs ---------- */
+    const tabs = [...document.querySelectorAll(".tab")];
+    function showTab(tab) {
+      tabs.forEach(t => {
+        const on = t === tab;
+        t.setAttribute("aria-selected", on);
+        document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+      });
+      $("#filters").hidden = tab.id === "tab-progress";
+      if (tab.id === "tab-progress") renderProgress();
+      try { sessionStorage.setItem("glx-lingo-tab", tab.id); } catch (e) {}
+    }
+    tabs.forEach(t => t.addEventListener("click", () => showTab(t)));
+
+    /* ---------- Init ---------- */
+    renderFilters(); refreshStats(); renderGlossary(); buildDeck(true); renderQuizSetup();
+    let startTab = null;
+    try { startTab = document.getElementById(sessionStorage.getItem("glx-lingo-tab")); } catch (e) {}
+    showTab(startTab || tabs[0]);
+  })();
+  </script>
+</body>
+</html>
